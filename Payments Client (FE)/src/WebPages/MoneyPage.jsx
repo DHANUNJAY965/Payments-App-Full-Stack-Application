@@ -5,7 +5,7 @@ import UsertoSend from "../PageComponents/UsertoSend";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { userdetails } from "../../Userdetails";
-// ... (import statements remain unchanged)
+
 import { useNavigate } from "react-router-dom";
 export default function MoneyPage() {
   const [balance, setBalance] = useState(0);
@@ -61,7 +61,7 @@ const navi=useNavigate();
     fetchData();
   }, [balance, maket]);
 
-  // Removed balance, userDetailsState, and maket from dependencies
+
 
   return (
     <>
