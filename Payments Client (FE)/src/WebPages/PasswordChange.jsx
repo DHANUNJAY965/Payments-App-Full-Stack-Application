@@ -56,7 +56,7 @@ export default function PasswordChange() {
               <Button
                 label={"Update"}
                 OnPress={async () => {
-                  console.log("token from update is : ", token);
+                  // console.log("token from update is : ", token);
                   try {
                     if(!passwor || !newpass || !confirm)
                     {
@@ -80,7 +80,7 @@ export default function PasswordChange() {
                           },
                         }
                       );
-                      console.log("response:", response.data.message);
+                      // console.log("response:", response.data.message);
                       setToastMessage(response.data.message);
                       setShowToast(true);
                       setTimeout(() => {

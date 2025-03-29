@@ -23,7 +23,7 @@ export const Verify = () => {
             <div className="rounded-lg bg-white text-center py-2 px-4 border-8 border-indigo-600 mx-auto">
               <div className="font-bold text-4xl mx-6 mt-6">Payment's App</div>
               <Header label={"Otp verification"} />
-              <Subheading label={"Enter the otp received through mail"} />
+              <Subheading label={`Enter the otp send to ${details.Email}`} />
               <InputFeild
                 onChange={(e) => {
                   setOtp(e.target.value);
@@ -44,7 +44,7 @@ export const Verify = () => {
                       }, 4000);
                       return;
                     }
-                    console.log("this is the otp stored",details.otp);
+                    // console.log("this is the otp stored",details.otp);
                     if (details.otp == userotp) {
                       setdetails({...userdeatils,userotp,})
                       setToastMessage("Otp Verified Successfully");

@@ -7,13 +7,13 @@ const router = require('./Routes/index');
 const cors = require("cors");
 const path = require('path');
 
-
+// Serve static files from the same directory
 app.use(express.static(__dirname));
 
-
+// Serve static files from the 'images' directory
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-
+// Serve static HTML file from the 'views' directory
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });

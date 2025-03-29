@@ -26,7 +26,7 @@ const navi=useNavigate();
           }
         );
 
-        await setBalance(response.data.balance);
+         setBalance(response.data.balance);
 
         const response2 = await axios.get(
           "https://payments-app-api-dhanu.vercel.app/api/v1/user/Userdetails",
@@ -37,14 +37,14 @@ const navi=useNavigate();
           }
         );
 
-        console.log("the details from moneypage : ", response2.data);
+        // console.log("the details from moneypage : ", response2.data);
 
-        console.log("the balance is : ", balance);
+        // console.log("the balance is : ", balance);
         await setUserDetailsState({
           ...response2.data,
           balance: response.data.balance,
         });
-        console.log("the user details from moneypage : ", userDetailsState);
+        // console.log("the user details from moneypage : ", userDetailsState);
         setT(true);
       } catch (error) {
        setToastMessage("Server down please try again later!")
@@ -66,11 +66,12 @@ const navi=useNavigate();
   return (
     <>
       {maket ? (
-        <div>
+        <div className="">
           <Appbar />
           <BalanceDisplay balance={balance} />
+          
           <UsertoSend usernam={userDetailsState.uname} />
-          <div className="absolute bottom-0 mb-4 text-gray-600 font-semibold w-full text-center">
+          <div className="bottom-0 mb-4 text-gray-600 font-semibold w-full text-center">
             Made with{" "}
             <span role="img" aria-label="heart">
               ❤️

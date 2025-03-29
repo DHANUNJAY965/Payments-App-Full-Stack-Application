@@ -25,7 +25,7 @@ export default function DeleteAccount() {
             <InputFeild
               onChange={(e) => {
                 setEmail(e.target.value);
-                console.log("the mail is : ",Email);
+                // console.log("the mail is : ",Email);
               }}
               label={"Enter Email"}
               placeholder={"dhanunjayaburada6@gmail.com"}
@@ -65,7 +65,7 @@ export default function DeleteAccount() {
                         },
                       }
                     );
-                    console.log("feom delete",response.data.message);
+                    // console.log("feom delete",response.data.message);
                     
                     if(response.data.message=="User Doesnt Exist")
                     {
@@ -98,7 +98,7 @@ export default function DeleteAccount() {
                       }, 4000);
                     }
                   } catch (e) {
-                    console.log("error is : ", e);
+                    // console.log("error is : ", e);
                     setToastMessage("please enter correct credentials");
                     setShowToast(true);
                     setTimeout(() => {

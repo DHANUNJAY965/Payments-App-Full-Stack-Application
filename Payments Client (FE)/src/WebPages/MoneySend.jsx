@@ -64,7 +64,7 @@ export default function MoneySend() {
                              Authorization: "Bearer "+localStorage.getItem('token'),
                          }
                         });
-                        console.log("the response after money send is : ",response.data.message)
+                        // console.log("the response after money send is : ",response.data.message)
                         if(response.data.message.startsWith("Rupees"))
                         {
                           setShowToast(true);

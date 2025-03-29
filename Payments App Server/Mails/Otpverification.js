@@ -14,7 +14,7 @@ const Otpverification = async (email, otp)=> {
         if (error) {
           console.error("Mail transporter error:", error);
         } else {
-          // console.log("Mail transporter is ready to send emails");
+          console.log("Mail transporter is ready to send emails");
         }
       });
   

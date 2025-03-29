@@ -116,9 +116,9 @@ export const Details = () => {
               <Button
                 label={"Sign Up"}
                 OnPress={async () => {
-                  console.log("clicked");
-                  console.log(details==undefined);
-                  console.log(details.Email);
+                  // console.log("clicked");
+                  // console.log(details==undefined);
+                  // console.log(details.Email);
                   try{
                     if (
                       details.Email.length > 4 &&
@@ -196,7 +196,7 @@ export const Details = () => {
                     }
                   }
                   catch (e) {
-                    console.log("reached catch part")
+                    // console.log("reached catch part")
                       setToastMessage("Please go back and verify your mail");
                         setShowToast(true);
                         setTimeout(() => {

@@ -2,14 +2,12 @@
 const express = require("express");
 const zod = require("zod");
 const router = express.Router();
-require("dotenv").config();
 const { User } = require("../Models/User");
 const { MiniStatement } = require("../Models/MiniStatement");
 const { Account } = require("../Models/Account");
 const secreat = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
 const { UserAuth } = require("../Midlewares/UserAuth");
-const nodemailer = require("nodemailer");
 const { Otpverification } = require("../Mails/Otpverification.js");
 const { ForgotPassword } = require("../Mails/ForgotPassword.js");
 //route for user signup and genrating the jwt token
@@ -50,7 +48,7 @@ router.post("/generate-otp", async (req, res) => {
   await Otpverification(username, otp)
   .then(()=>
   {
-     return res.status(200).json({ message: "OTP send to your mail", otp: otp });
+     return res.status(200).json({ message: "OTP sent to your email. Please check your spam folder as well.", otp: otp });
   })
   .catch(()=>{
    return res.json({ message: "OTP not sent successfully." });
@@ -188,7 +186,7 @@ router.get("/Userdetails", UserAuth, async (req, res) => {
   const userdetails = await User.findOne({ _id: req.userid });
 
   res.json({
-    message: "User details Updated successfully",
+    message: "User details fetched successfully",
     fname: userdetails.firstname,
     lname: userdetails.lastname,
     uname: userdetails.username,

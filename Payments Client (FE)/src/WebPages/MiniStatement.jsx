@@ -33,18 +33,17 @@ export default function MiniStatement() {
           }
         );
 
-       
         setTransactions(response.data.history);
         setBalance(response2.data.balance);
       } catch (error) {
-        setToastMessage("Server down please try again later!")
-       setShowToast(true)
-       setTimeout(()=>{
-        setShowToast(false)
-       },4000)
-       setTimeout(()=>{
-        navi("/Account");
-       },2000)
+        setToastMessage("Server down please try again later!");
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 4000);
+        setTimeout(() => {
+          navi("/Account");
+        }, 2000);
       }
     };
 
@@ -52,20 +51,29 @@ export default function MiniStatement() {
   }, [token]);
 
   useEffect(() => {
-    console.log("the response2 is : ", transactions);
+    // console.log("the response2 is : ", transactions);
   }, [transactions, balance]);
 
   return (
     <>
-      <div className="bg-slate-320 h-screen flex justify-center">
+    <body className="min-h-screen flex items-center justify-center overflow-y-auto">
+      <div className="bg-slate-320 flex flex-col  max-w-max justify-center items-center">
         <div className="flex flex-col justify-center">
           <div className="rounded-lg bg-white text-center py-2 h-max px-4 border-8  border-indigo-600">
             <Header label={"Mini Statement"} />
             <div className="flex flex-wrap justify-center">
-              <h3 className="my-4 font-semibold text-base">Balance: {balance}</h3>
+              <h3 className="my-4 font-semibold text-base">
+                Balance: {balance}
+              </h3>
             </div>
-            {
-                transactions.length==0? (<h1 className="font-semibold text-base text-green-600 mb-3">NO Trancactions Made</h1>) : (<div className="flex flex-col mt-6">
+            {transactions.length == 0 ? (
+              <>
+              <h1 className="font-semibold text-base text-green-600 mb-3">
+                NO Trancactions Made
+              </h1>
+              </>
+            ) : (
+              <div className="flex flex-col mt-6">
                 <div className="flex justify-between border-b border-gray-300 py-2">
                   <div className="w-1/3">
                     <h1 className="font-bold text-xl">Transaction Amount</h1>
@@ -93,29 +101,28 @@ export default function MiniStatement() {
                     </div>
                   </div>
                 ))}
-              </div>)
-            }
-            
+              </div>
+            )}
+
             <div className="pt-4">
               <Button
                 label={"Back"}
-                OnPress={()=>
-                {
+                OnPress={() => {
                   navi("/Account");
                 }}
               />
             </div>
           </div>
         </div>
-      </div>
-      <div className="absolute bottom-0 mb-4 text-gray-600 font-semibold w-full text-center">
+        <div className="mb-4 text-gray-600 font-semibold  text-center">
           Made with{" "}
           <span role="img" aria-label="heart">
             ❤️
           </span>{" "}
           by Burada Dhanunjay
         </div>
-        {showToast && (
+      </div>
+      {showToast && (
         <div
           id="toast-warning"
           className="fixed inset-x-0 top-0 mx-auto mt-4 max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
@@ -164,6 +171,7 @@ export default function MiniStatement() {
           </div>
         </div>
       )}
+    </body>
     </>
   );
 }

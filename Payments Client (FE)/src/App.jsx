@@ -13,6 +13,7 @@ import { Emailsignup } from "./WebPages/Emailsignup";
 import { Verify } from "./WebPages/Verify";
 import { Details } from "./WebPages/Details";
 import { HomePage } from "./WebPages/HomePage";
+
 function App() {
   return (
     <>

@@ -37,8 +37,8 @@ router.delete("/DeleteAccount", UserAuth, async (req, res) => {
       });
     }
      else if (
-      finduseraccount.username == username &&
-      finduseraccount.password == password
+      finduseraccount.username === username &&
+      finduseraccount.password === password
     ) {
       await User.findOneAndDelete({ _id: req.userid });
       await Account.findOneAndDelete({ userId: req.userid });

@@ -12,12 +12,15 @@ export const Emailsignup = () => {
   const [Email, setEmail] = useState("");
  const [showToast, setShowToast] = useState(false);
   const [Toast, setToastMessage] = useState("");
+  const [maket, setT] = useState(false);
   const navi = useNavigate();
   const [details,setDetails]=useRecoilState(userdetails);
 
   return (
     <>
-    <div className="flex flex-col justify-center items-center h-screen">
+    {maket?(<div> <div className="flex justify-center items-center h-screen">
+      <div className="w-16 h-16 border-t-4 border-indigo-500 border-solid rounded-full animate-spin"></div>
+    </div></div>):( <div className="flex flex-col justify-center items-center h-screen">
       <div className="bg-slate-320 max-h-screen flex flex-col items-center justify-center">
         <div className="relative max-w-md w-full">
           <div className="rounded-lg bg-white text-center py-2 px-4 border-8 border-indigo-600 mx-auto">
@@ -38,6 +41,7 @@ export const Emailsignup = () => {
               <Button
                 label={"Verify"}
                 OnPress={async () => {
+                 
                   if (!Email) {
                     setShowToast(true);
                     setToastMessage("Please Enter Email Address.");
@@ -46,6 +50,7 @@ export const Emailsignup = () => {
                     }, 4000);
                     return;
                   }
+                  setT(true);
                  try{
                    const response = await axios.post(
                      "https://payments-app-api-dhanu.vercel.app/api/v1/user/generate-otp",
@@ -57,14 +62,17 @@ export const Emailsignup = () => {
                      }
                    );
                    
-                   console.log(response.data.message.startsWith("OTP send to your mail"))
+                  //  console.log(response.data.message.startsWith("OTP send to your mail"))
+                  // console.log(response.data.otp);
                    if (response.data.message.startsWith("OTP send to your mail")) {
                      setDetails({
                        Email:Email.toLowerCase(),
                        otp: response.data.otp,
                      });
+                     
                      setToastMessage(response.data.message);
                      setShowToast(true);
+                     setT(false)
                      setTimeout(() => {
                        setShowToast(false);
                      }, 4000);
@@ -74,6 +82,7 @@ export const Emailsignup = () => {
                    } else {
                      setToastMessage(response.data.message);
                      setShowToast(true);
+                     setT(false)
                      setTimeout(() => {
                        setShowToast(false);
                      }, 4000);
@@ -84,6 +93,7 @@ export const Emailsignup = () => {
                  {
                   setToastMessage("Server down Pease try again later");
                   setShowToast(true);
+                  setT(false)
                   setTimeout(() => {
                     setShowToast(false);
                   }, 4000);
@@ -101,6 +111,7 @@ export const Emailsignup = () => {
 
             {showToast &&
               (Toast.startsWith("OTP send to your mail") ? (
+              
                 <div
                   id="toast-success"
                   className="fixed inset-x-0 top-0 mx-auto mt-4 max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
@@ -207,7 +218,8 @@ export const Emailsignup = () => {
         </span>{" "}
         by Burada Dhanunjay
       </div>
-    </div>
+    </div>)}
+   
     </>
   );
 };

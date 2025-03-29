@@ -1,7 +1,7 @@
 
 export default function BalanceDisplay({balance}) {
   return (
-    <div className="flex mt-6">
+    <div className="flex  mt-6"> 
         <div className="font-bold text-lg ml-4">
             Your balance is :
         </div>
@@ -11,3 +11,5 @@ export default function BalanceDisplay({balance}) {
     </div>
   )
 }
+   
+{/* <div className="flex fixed mt-6">  */}

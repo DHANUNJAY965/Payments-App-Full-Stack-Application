@@ -14,7 +14,7 @@ export function InputFeild({
   const [toastMessage, setToastMessage] = useState("");
 
   const handleVerifyClick = async () => {
-    console.log("the email id: ", email);
+    // console.log("the email id: ", email);
     try {
       const response = await axios.post(
         "https://payments-app-api-dhanu.vercel.app/api/v1/user/generate-otp",

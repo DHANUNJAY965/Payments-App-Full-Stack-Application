@@ -8,11 +8,14 @@ import axios from "axios";
 export const ForgetPassword = () => {
   const [Email, setEmail] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [maket, setT] = useState(false);
   const [Toast, setToastMessage] = useState("");
   const navi = useNavigate();
   return (
     <>
-    <div className="flex flex-col justify-center items-center h-screen">
+    {maket?(<div> <div className="flex justify-center items-center h-screen">
+      <div className="w-16 h-16 border-t-4 border-indigo-500 border-solid rounded-full animate-spin"></div>
+    </div></div>):(<div className="flex flex-col justify-center items-center h-screen">
       <div className="bg-slate-320 max-h-screen flex justify-center">
         <div className="flex flex-col justify-center">
           <div className="rounded-lg bg-white text-center py-2 h-max px-4 border-8  border-indigo-600">
@@ -37,6 +40,7 @@ export const ForgetPassword = () => {
                     }, 4000);
                     return;
                   }
+                  setT(true);
                   try{
                     const response = await axios.post(
                       "https://payments-app-api-dhanu.vercel.app/api/v1/user/forgetpassword",
@@ -46,8 +50,10 @@ export const ForgetPassword = () => {
                     );
                     if (response.data.message) {
                       if (response.data.message.startsWith("Password")) {
+                        
                         setToastMessage(response.data.message);
                         setShowToast(true);
+                        setT(false);
                         setTimeout(() => {
                           setShowToast(false);
                         }, 4000);
@@ -55,8 +61,10 @@ export const ForgetPassword = () => {
                           navi("/signin");
                         }, 2000);
                       } else {
+                        
                         setToastMessage(response.data.message);
                         setShowToast(true);
+                        setT(false);
                         setTimeout(() => {
                           setShowToast(false);
                         }, 4000);
@@ -64,8 +72,10 @@ export const ForgetPassword = () => {
                       }
                       return;
                     } else {
+                      
                       setToastMessage("Something went Wrong in the server");
                       setShowToast(true);
+                      setT(false);
                       setTimeout(() => {
                         setShowToast(false);
                       }, 4000);
@@ -74,8 +84,10 @@ export const ForgetPassword = () => {
                   }
                   catch(e)
                   {
+                    
                     setToastMessage("Server down please try again later!");
                     setShowToast(true);
+                    setT(false);
                     setTimeout(() => {
                       setShowToast(false);
                     }, 4000);
@@ -203,7 +215,8 @@ export const ForgetPassword = () => {
         </span>{" "}
         by Burada Dhanunjay
       </div>
-    </div>
+    </div>)}
+    
     </>
   );
 };

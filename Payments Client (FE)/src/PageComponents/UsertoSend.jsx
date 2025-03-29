@@ -17,6 +17,7 @@ export default function UsertoSend({usernam}) {
   },[filter,Users])
   return (
     <>
+    {/* <div className="items-center justify-center overflow-y-auto"> */}
       <div className="font-bold mt-6 ml-4">Users</div>
       <div className="my-2 mx-4">
         <input
@@ -41,6 +42,8 @@ export default function UsertoSend({usernam}) {
         }
       })}
       </div>
+    {/* </div> */}
+      
     </>
   );    
 }
