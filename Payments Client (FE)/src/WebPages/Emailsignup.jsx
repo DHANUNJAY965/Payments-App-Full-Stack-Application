@@ -63,9 +63,9 @@ export const Emailsignup = () => {
                      }
                    );
                    
-                   console.log(response.data.message.startsWith("OTP sent to your email"))
+                   console.log(response.data.message.startsWith("OTP send to your mail"))
                   console.log(response.data.otp);
-                   if (response.data.message.startsWith("OTP sent to your email")) {
+                   if (response.data.message.startsWith("OTP send to your mail")) {
                      setDetails({
                        Email:Email.toLowerCase(),
                        otp: response.data.otp,

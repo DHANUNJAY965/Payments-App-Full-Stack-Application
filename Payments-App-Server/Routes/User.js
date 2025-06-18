@@ -48,7 +48,7 @@ router.post("/generate-otp", async (req, res) => {
   await Otpverification(username, otp)
   .then(()=>
   {
-     return res.status(200).json({ message: "OTP sent to your email. Please check your spam folder as well.", otp: otp });
+     return res.status(200).json({ message: "OTP send to your mail. Please check your spam folder as well.", otp: otp });
   })
   .catch(()=>{
    return res.json({ message: "OTP not sent successfully." });
