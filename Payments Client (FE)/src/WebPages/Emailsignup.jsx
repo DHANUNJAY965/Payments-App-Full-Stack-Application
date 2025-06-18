@@ -52,6 +52,7 @@ export const Emailsignup = () => {
                   }
                   setT(true);
                  try{
+                  console.log("camehere")
                    const response = await axios.post(
                      "https://payments-app-api-dhanu.vercel.app/api/v1/user/generate-otp",
                      {
@@ -71,7 +72,7 @@ export const Emailsignup = () => {
                      });
                      
                      setTimeout(() => {
-                                        console.log("came here");
+                      console.log("came here");
 
                         navi(`/Verify`);
                      }, 1500);
