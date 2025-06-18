@@ -62,23 +62,26 @@ export const Emailsignup = () => {
                      }
                    );
                    
-                  //  console.log(response.data.message.startsWith("OTP send to your mail"))
-                  // console.log(response.data.otp);
-                   if (response.data.message.startsWith("OTP send to your mail")) {
+                   console.log(response.data.message.startsWith("OTP sent to your email"))
+                  console.log(response.data.otp);
+                   if (response.data.message.startsWith("OTP sent to your email")) {
                      setDetails({
                        Email:Email.toLowerCase(),
                        otp: response.data.otp,
                      });
                      
+                     setTimeout(() => {
+                                        console.log("came here");
+
+                        navi(`/Verify`);
+                     }, 1500);
                      setToastMessage(response.data.message);
                      setShowToast(true);
                      setT(false)
                      setTimeout(() => {
                        setShowToast(false);
-                     }, 4000);
-                     setTimeout(() => {
-                         navi(`/Verify`);
-                     }, 1500);
+                     }, 1000);
+                     
                    } else {
                      setToastMessage(response.data.message);
                      setShowToast(true);
